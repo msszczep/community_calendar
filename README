@@ -12,8 +12,11 @@ A community_calendar.db (sqlite3) is automatically generated.
 
 http://www.yourserver.com/yourdirectory/community_calendar.py
 
+* To view entries in text format:
+
+http://www.yourserver.com/yourdirectory/community_calendar.py?a=text
+
 * To add in new entries:
 
 http://www.yourserver.com/yourdirectory/community_calendar.py?a=input
-
 

@@ -3,6 +3,8 @@
 # TO DO:
 # 1. Auto email results
 # 2. Auto RSS results
+# 3. Clean up time format
+# 4. Make input page friendlier to use.
 
 from datetime import date
 import local_var
