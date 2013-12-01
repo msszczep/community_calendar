@@ -1,0 +1,19 @@
+This is a community calendar program.  Its purpose: To make it easy
+to input, store, edit, and deliver out (in a variety of formats) events
+of interest to Chicago's activist community in the style of the New
+World Resource Center's events calendar.
+
+Installation is easy: Place the two files in a directory on a web server
+that has Python >= 2.6.
+
+A community_calendar.db (sqlite3) is automatically generated.
+
+* To view entries in HTML:
+
+http://www.yourserver.com/yourdirectory/community_calendar.py
+
+* To add in new entries:
+
+http://www.yourserver.com/yourdirectory/community_calendar.py?a=input
+
+
