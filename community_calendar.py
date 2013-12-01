@@ -3,17 +3,13 @@
 # TO DO:
 # 1. Auto email results
 # 2. Auto RSS results
-# 3. Make github repo
-# 4. Set up local_var file
-# 5. Fix extra spaces in text output 
 
 from datetime import date
+import local_var
 
 week_abbr = { 0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat' }
 mon_abbr = {1: 'Jan.', 2: 'Feb.', 3: 'Mar.', 4: 'Apr.', 5: 'May', 6: 'Jun.', 7: 'Jul.', 8: 'Aug.', 9: 'Sep.', 10: 'Oct.', 11: 'Nov.', 12: 'Dec.'}
 additional_info_types = {'sponsor': 'Sponsor: ', 'website': 'Web: ', 'facebook': 'Facebook: ', 'email': 'Email: ', 'phone_number': 'Phone: '}
-fields = ['start_date', 'start_time', 'location', 'address', 'event_title', 'event_description', 'sponsor', 'website', 'facebook', 'email', 'phone_number']
-title = "Chicago Indymedia Community Calendar" 
 
 import cgi
 form = cgi.FieldStorage()
@@ -32,7 +28,7 @@ def get_day_of_week(start_date):
 
 def get_data_dictionary(r):
     d = {}
-    for i, f in enumerate(fields):
+    for i, f in enumerate(local_var.fields):
        if r[i + 1] == None:
            d[f] = ''
        else:
@@ -68,13 +64,14 @@ def print_html_head():
 </HEAD>
 <BODY>
 <H1>%s</H1>
-    """ % (title, title)
+    """ % (local_var.title, local_var.title)
 
 def print_calendar(rows, output_type, css_file):
     # <link charset="utf-8" media="all" type="text/css" href="%s" rel="stylesheet">
     if output_type == 'text':
         print """Content-type: text/html\n\n"""
         print "<HTML><BODY><PRE>"
+        print local_var.title.upper() + "\n"
     else: 
         print_html_head()
         print """<TABLE border=1>"""
@@ -83,9 +80,7 @@ def print_calendar(rows, output_type, css_file):
         date_and_location_line = get_date_and_location_line(d)
         additional_info_line = get_info(d, 'sponsor', output_type) + get_info(d, 'website', output_type) + get_info(d, 'facebook', output_type) + get_info(d, 'email', output_type) + get_info(d, 'phone_number', output_type) 
         if output_type == 'text':
-            print """
-%s\n%s\n%s\n%s\n\n
-            """ % (date_and_location_line, d['event_title'].upper(), d['event_description'], additional_info_line)
+            print """%s\n%s\n%s\n%s""" % (date_and_location_line, d['event_title'].upper(), d['event_description'], additional_info_line)
         else:
             print """<TR><TD>
 %s<BR> 
@@ -105,7 +100,7 @@ def get_input_page():
     print """
 <FORM method="POST" action="./community_calendar_input.py">
 <TABLE>"""
-    for i in fields: 
+    for i in local_var.fields: 
         print """<TR><TD>%s</TD><TD><input type='text' name='%s' size='15' maxlength='60'/></TD></TR>""" % (i, i)
     print """</TABLE>
 <INPUT TYPE=SUBMIT VALUE="Submit">

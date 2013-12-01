@@ -4,10 +4,10 @@ import cgi
 import sqlite3
 form = cgi.FieldStorage()
 
-fields = ['start_date', 'start_time', 'location', 'address', 'event_title', 'event_description', 'sponsor', 'website', 'facebook', 'email', 'phone_number']
+import local_var
 
 d = {}
-for field in fields:
+for field in local_var.fields:
     if form.getvalue(field) == None:
         d[field] = ''
     else:
