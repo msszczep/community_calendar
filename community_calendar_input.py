@@ -20,4 +20,4 @@ conn.commit()
 conn.close()
 
 print "Content-type: text/html\n\n"
-print """<meta HTTP-EQUIV='REFRESH' content='0; url=http://www.szcz.org/cc/community_calendar.py'>"""
+print """<meta HTTP-EQUIV='REFRESH' content='0; url=http://%s/cc/community_calendar.py'>""" % local_var.server
